@@ -88,6 +88,18 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+  it('/book/12 returns details of Malibu Rising', async () => {
+    const res = await request(app).get('/books/12');
+    const expected = {
+      id: '12',
+      title: 'Malibu Rising',
+      author: 'Taylor Jenkins Reid',
+      finished: false,
+      published: 2021,
+      genre: 'historical fiction',
+    };
+    expect(res.body).toEqual(expected);
+  });
   afterAll(() => {
     pool.end();
   });
